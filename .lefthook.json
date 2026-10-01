@@ -1,0 +1,18 @@
+{
+  "pre-commit": {
+    "commands": {
+      "oxfmt": {
+        "glob": "*.{ts,json}",
+        "run": "bun run oxfmt --indent-widtht 4 --fix {staged_files} && git add {staged_files}"
+      },
+      "oxlint": {
+        "glob": "*.ts",
+        "run": "bun run oxlint {staged_files}"
+      },
+      "test": {
+        "glob": "*.ts",
+        "run": "bun test"
+      }
+    }
+  }
+}
