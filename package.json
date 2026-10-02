@@ -5,6 +5,8 @@
         "dev": "wrangler dev",
         "deploy": "wrangler deploy --minify",
         "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+        "lint": "oxlint",
+        "lint:fix": "oxlint --fix",
         "postinstall": "is-ci || lefthook install"
     },
     "dependencies": {
@@ -18,7 +20,7 @@
         "@types/node": "^26.6.3",
         "lefthook": "^2.1.14",
         "oxfmt": "^0.70.0",
-        "oxlint": "^1.85.0",
-        "wrangler": "^4.110.0"
+        "oxlint": "^1.86.0",
+        "wrangler": "^4.146.0"
     }
 }
