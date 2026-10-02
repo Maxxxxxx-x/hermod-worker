@@ -15,6 +15,7 @@ jobs:
                   token: ${{ secrets.VERYPRO_REPO_TOKEN }}
                   submodules: true
                   ref: main
+                  fetch-depth: 0
 
             - name: Configure git
               run: |
@@ -24,7 +25,7 @@ jobs:
             - name: Update submodule
               id: update
               run: |
-                  git submodule update --init --remote --merge worker
+                  git submodule update --init --remote --force worker
 
                   if git diff --quiet; then
                     echo "changed=false" >> $GITHUB_OUTPUT
