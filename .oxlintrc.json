@@ -14,4 +14,3 @@
     },
     "ignorePatterns": ["dist/**", "node_modules/**", ".wrangler/**"]
 }
-

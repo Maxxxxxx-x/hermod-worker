@@ -1,6 +1,6 @@
 onlyBuiltDependencies:
-  - esbuild
-  - workerd
+    - esbuild
+    - workerd
 allowBuilds:
-  esbuild: true
-  workerd: true
+    esbuild: true
+    workerd: true

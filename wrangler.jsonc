@@ -1,79 +1,79 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "hermod-worker",
-  "main": "src/index.ts",
-  "compatibility_date": "2026-09-27",
-  "send_email": [
-      {
-          "name": "EMAIL"
-      }
-  ],
-  "queues": {
-      "producers": [
-          {
-              "queue": "hermod-ingress-queue",
-              "binding": "HERMOD_INGRESS_QUEUE"
-          },
-          {
-              "queue": "hermod-egress-queue",
-              "binding": "HERMOD_EGRESS_QUEUE"
-          }
-      ],
-      "consumers": [
-          {
-              "queue": "hermod-ingress-queue",
-              "max_batch_size": 10,
-              "max_batch_timeout": 5,
-              "dead_letter_queue": "hermod-ingress-dql"
-          },
-          {
-              "queue": "hermod-egress-queue",
-              "max_batch_size": 10,
-              "max_batch_timeout": 5,
-              "dead_letter_queue": "hermod-egress-dql"
-          },
-          {
-              "queue": "hermod-ingress-dql",
-              "max_batch_size": 10,
-              "max_batch_timeout": 5
-          },
-          {
-              "queue": "hermod-egress-dql",
-              "max_batch_size": 10,
-              "max_batch_timeout": 5
-          }
-        ]
-  }
-  // "compatibility_flags": [
-  //   "nodejs_compat"
-  // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
-  // "ai": {
-  //   "binding": "AI"
-  // },
-  // "observability": {
-  //   "enabled": true,
-  //   "head_sampling_rate": 1
-  // }
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "hermod-worker",
+    "main": "src/index.ts",
+    "compatibility_date": "2026-09-27",
+    "send_email": [
+        {
+            "name": "EMAIL",
+        },
+    ],
+    "queues": {
+        "producers": [
+            {
+                "queue": "hermod-ingress-queue",
+                "binding": "HERMOD_INGRESS_QUEUE",
+            },
+            {
+                "queue": "hermod-egress-queue",
+                "binding": "HERMOD_EGRESS_QUEUE",
+            },
+        ],
+        "consumers": [
+            {
+                "queue": "hermod-ingress-queue",
+                "max_batch_size": 10,
+                "max_batch_timeout": 5,
+                "dead_letter_queue": "hermod-ingress-dql",
+            },
+            {
+                "queue": "hermod-egress-queue",
+                "max_batch_size": 10,
+                "max_batch_timeout": 5,
+                "dead_letter_queue": "hermod-egress-dql",
+            },
+            {
+                "queue": "hermod-ingress-dql",
+                "max_batch_size": 10,
+                "max_batch_timeout": 5,
+            },
+            {
+                "queue": "hermod-egress-dql",
+                "max_batch_size": 10,
+                "max_batch_timeout": 5,
+            },
+        ],
+    },
+    // "compatibility_flags": [
+    //   "nodejs_compat"
+    // ],
+    // "vars": {
+    //   "MY_VAR": "my-variable"
+    // },
+    // "kv_namespaces": [
+    //   {
+    //     "binding": "MY_KV_NAMESPACE",
+    //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    //   }
+    // ],
+    // "r2_buckets": [
+    //   {
+    //     "binding": "MY_BUCKET",
+    //     "bucket_name": "my-bucket"
+    //   }
+    // ],
+    // "d1_databases": [
+    //   {
+    //     "binding": "MY_DB",
+    //     "database_name": "my-database",
+    //     "database_id": ""
+    //   }
+    // ],
+    // "ai": {
+    //   "binding": "AI"
+    // },
+    // "observability": {
+    //   "enabled": true,
+    //   "head_sampling_rate": 1
+    // }
 }
