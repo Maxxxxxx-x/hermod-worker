@@ -1,0 +1,40 @@
+name: Auto update Hermod worker submodule
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    update_repo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout parent directory
+              uses: actions/checkout@v4
+              with:
+                  repository: verypro-wtf/Hermod
+                  token: ${{ secrets.VERYPRO_REPO_TOKEN }}
+                  submodules: true
+                  ref: main
+
+            - name: Configure git
+              run: |
+                  git config user.name "gh-actions[bot]"
+                  git config user.email "gh-actions[bot]@users.noreply.github.com"
+
+            - name: Update submodule
+              id: update
+              run: |
+                  git submodule update --remote --merge worker
+
+                  if git diff --quiet; then
+                    echo "changed=false" >> $GITHUB_OUTPUT
+                    echo "No changes needed"
+                  else
+                    echo "changed=true" >> $GITHUB_OUTPUT
+                    git add worker
+                    LEFTHOOK=0 git commit --no-verify -m "chore: bumped worker submodule to ${{ github.sha }}"
+                  fi
+
+            - name: Push changes
+              if: steps.update.outputs.changed == 'true'
+              run: git push origin main
