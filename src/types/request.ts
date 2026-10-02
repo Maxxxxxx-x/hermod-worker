@@ -4,8 +4,5 @@ export interface InboundRequest {
 }
 
 interface InBoundRequestBody {
-    from: string;
-    to: string;
-    recipient: string;
     rawMessage: string;
 }

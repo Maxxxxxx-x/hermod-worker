@@ -13,9 +13,6 @@ export async function handleInboundRequest(message: ForwardableEmailMessage, env
     const request: InboundRequest = {
         token: env.WEBHOOK_API_KEY,
         body: {
-            from: message.from,
-            to: message.to,
-            recipient: message.to,
             rawMessage: rawMessageString,
         },
     };
