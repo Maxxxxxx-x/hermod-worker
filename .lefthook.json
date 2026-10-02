@@ -8,7 +8,11 @@
             "oxlint": {
                 "glob": "*.ts",
                 "run": "bun run oxlint {staged_files}"
-            },
+            }
+        }
+    },
+    "pre-push": {
+        "commands": {
             "test": {
                 "glob": "*.ts",
                 "run": "bun test --pass-with-no-tests"
