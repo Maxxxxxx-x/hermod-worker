@@ -24,7 +24,7 @@ jobs:
             - name: Update submodule
               id: update
               run: |
-                  git submodule update --remote --merge worker
+                  git submodule update --init --remote --merge worker
 
                   if git diff --quiet; then
                     echo "changed=false" >> $GITHUB_OUTPUT
