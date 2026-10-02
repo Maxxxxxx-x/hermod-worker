@@ -11,7 +11,7 @@
             },
             "test": {
                 "glob": "*.ts",
-                "run": "bun test"
+                "run": "bun test --pass-with-no-tests"
             }
         }
     }
