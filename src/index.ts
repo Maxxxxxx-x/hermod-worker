@@ -12,8 +12,6 @@ app.use("*", async (_, next) => {
     await next();
 });
 
-console.log("hello world");
-
 export default {
     fetch: app.fetch,
 
