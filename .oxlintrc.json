@@ -18,11 +18,20 @@
     },
 
     "rules": {
+        "unicorn/no-null": "off",
         "sort-imports": "off",
         "no-console": "error",
+        "no-unused-vars": "error",
+
+        "typescript/no-explicit-any": "warn",
+        "typescript/no-floating-promises": "error",
+        "eqeqeq": ["error", "always", { "null": "ignore" }],
+
         "one-var": "off",
         "sort-keys": "off",
         "func-style": "off",
+        "no-continue": "off",
+        "max-statements": "off",
 
         "@logtape/no-dynamic-message": "warn",
         "@logtape/no-unrendered-properties": "warn",
@@ -34,8 +43,7 @@
 
     "options": {
         "typeAware": true,
-        "typeCheck": true,
-        "maxWarnings": 10
+        "typeCheck": true
     },
 
     "env": {
