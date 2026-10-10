@@ -1,0 +1,56 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": ["typescript", "unicorn", "oxc"],
+
+    "jsPlugins": [
+        {
+            "name": "@logtape",
+            "specifier": "@logtape/lint/eslint"
+        }
+    ],
+
+    "categories": {
+        "correctness": "error",
+        "suspicious": "warn",
+        "pedantic": "off",
+        "perf": "warn",
+        "style": "warn"
+    },
+
+    "rules": {
+        "sort-imports": "off",
+        "no-console": "error",
+        "one-var": "off",
+        "sort-keys": "off",
+        "func-style": "off",
+
+        "@logtape/no-dynamic-message": "warn",
+        "@logtape/no-unrendered-properties": "warn",
+        "@logtape/no-message-interpolation": "error",
+        "@logtape/prefer-lazy-evaluation": "warn",
+        "@logtape/no-unawaited-log": "error",
+        "@logtape/require-meta-sink": "warn"
+    },
+
+    "options": {
+        "typeAware": true,
+        "typeCheck": true,
+        "maxWarnings": 10
+    },
+
+    "env": {
+        "builtin": true,
+        "worker": true
+    },
+
+    "globals": {
+        "Bun": "readonly",
+        "caches": "readonly",
+        "fetch": "readonly",
+        "Request": "readonly",
+        "Response": "readonly",
+        "URL": "readonly"
+    },
+
+    "ignorePatterns": ["node_modules/", "dist/", ".wrangler/"]
+}

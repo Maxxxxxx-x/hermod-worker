@@ -1,0 +1,73 @@
+pre-commit:
+    parallel: false
+    jobs:
+        - name: type-check
+          run: bun x tsc --noEmit
+
+        - name: lint
+          glob: "*.{ts,js,tsx,jsx,json}"
+          run: bun x oxfmt --check {staged_files}
+
+        - name: format
+          glob: "*.{ts,js,tsx,jsx,json,css,md}"
+          run: bun x oxlint {staged_files}
+
+pre-push:
+    jobs:
+        - name: package audit
+          run: bun audit
+
+        - name: type-check
+          run: bun x tsc --noEmit
+
+        - name: lint
+          run: bun x oxlint
+
+        - name: format
+          run: bun x oxfmt
+
+        - name: test
+          run: bun test --pass-with-no-tests
+
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://lefthook.dev/configuration/
+#
+# pre-push:
+#   jobs:
+#     - name: packages audit
+#       tags:
+#         - frontend
+#         - security
+#       run: yarn audit
+#
+#     - name: gems audit
+#       tags:
+#         - backend
+#         - security
+#       run: bundle audit
+#
+# pre-commit:
+#   parallel: true
+#   jobs:
+#     - run: yarn eslint {staged_files}
+#       glob: "*.{js,ts,jsx,tsx}"
+#
+#     - name: rubocop
+#       glob: "*.rb"
+#       exclude:
+#         - config/application.rb
+#         - config/routes.rb
+#       run: bundle exec rubocop --force-exclusion -- {all_files}
+#
+#     - name: govet
+#       files: git ls-files -m
+#       glob: "*.go"
+#       run: go vet -- {files}
+#
+#     - script: "hello.js"
+#       runner: node
+#
+#     - script: "hello.go"
+#       runner: go run

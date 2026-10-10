@@ -1,0 +1,14 @@
+[sqruff]
+dialect = sqlite
+max_line_length = 100
+
+rules = all
+
+[sqruff:indentation]
+tab_space_size = 4
+allow_implicit_indents = True
+
+[sqruff:layout:type:alias_expression]
+spacing_before = align
+align_within = select_clause
+align_scope = bracketed
