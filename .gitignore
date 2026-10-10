@@ -3,3 +3,6 @@ node_modules/
 
 .wrangler/
 /.wrangler
+
+.DS_Store
+**/.DS_Store
