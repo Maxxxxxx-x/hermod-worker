@@ -7,19 +7,19 @@
         "cf-typegen": "wrangler types --env-interface CloudflareBindings"
     },
     "dependencies": {
-        "@logtape/logtape": "^2.4.0",
+        "@foxglove/crc": "^1.0.1",
+        "@logtape/logtape": "^2.4.1",
         "hono": "^4.13.13",
-        "lefthook": "^2.2.1",
+        "lefthook": "^2.2.2",
         "oxfmt": "^0.72.0",
-        "oxlint": "^1.87.0",
+        "oxlint-tsgolint": "^7.0.2004",
         "ulid": "^3.0.2",
         "valibot": "^1.5.0"
     },
     "devDependencies": {
         "@logtape/lint": "^2.4.1",
-        "@types/node": "^26.6.4",
-        "oxlint-tsgolint": "^7.0.2003",
+        "@types/node": "^26.6.5",
         "typescript": "^7.0.2",
-        "wrangler": "^4.149.0"
+        "wrangler": "^4.151.0"
     }
 }
