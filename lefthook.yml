@@ -6,11 +6,11 @@ pre-commit:
 
         - name: lint
           glob: "*.{ts,js,tsx,jsx,json}"
-          run: bun x oxfmt --check {staged_files}
+          run: bun fmt --check {staged_files}
 
         - name: format
           glob: "*.{ts,js,tsx,jsx,json,css,md}"
-          run: bun x oxlint {staged_files}
+          run: bun lint {staged_files}
 
 pre-push:
     jobs:
