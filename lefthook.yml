@@ -6,11 +6,11 @@ pre-commit:
 
         - name: lint
           glob: "*.{ts,js,tsx,jsx,json}"
-          run: bun fmt --check {staged_files}
+          run: bun lint --no-error-on-unmatched-pattern --check {staged_files}
 
         - name: format
           glob: "*.{ts,js,tsx,jsx,json,css,md}"
-          run: bun lint {staged_files}
+          run: bun fmt --no-error-on-unmatched-pattern {staged_files}
 
 pre-push:
     jobs:
