@@ -35,8 +35,6 @@
         "max-statements": "off",
         "no-magic-numbers": "off",
 
-        "@eslint/max-depth": "off",
-
         "@logtape/no-dynamic-message": "warn",
         "@logtape/no-unrendered-properties": "warn",
         "@logtape/no-message-interpolation": "error",
@@ -57,5 +55,5 @@
 
     "globals": {},
 
-    "ignorePatterns": ["node_modules/", "dist/", ".wrangler/"]
+    "ignorePatterns": ["node_modules/", "dist/", ".wrangler/", "src/**"]
 }
