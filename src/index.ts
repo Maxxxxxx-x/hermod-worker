@@ -2,6 +2,7 @@ import { type Context, Hono } from "hono";
 import { type RequestIdVariables, requestId } from "hono/request-id";
 
 import { setupLogger } from "./logger/logger";
+import { authenticateApiKey } from "./middlewares/auth-api-key.middleware";
 import { logger } from "./middlewares/logger.middleware";
 import { v1 } from "./routes";
 
@@ -20,6 +21,8 @@ app.use(
 );
 
 app.use(logger());
+
+app.use("*", authenticateApiKey);
 
 app.route("/v1", v1);
 
