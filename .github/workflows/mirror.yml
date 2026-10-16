@@ -1,35 +1,40 @@
-name: sync to org repo
+name: Mirror to org repo
 
 on:
     push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
-        types:
-            - closed
+        branches: [main]
 
 jobs:
-    sync:
-        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    update_repo:
         runs-on: ubuntu-slim
-
         steps:
-            - name: checkout src repo
+            - name: Checkout parent directory
               uses: actions/checkout@v4
               with:
+                  repository: verypro-wtf/Hermod
                   token: ${{ secrets.VERYPRO_REPO_TOKEN }}
+                  submodules: true
+                  ref: main
                   fetch-depth: 0
 
-            - name: Setup git identity
+            - name: Configure git
               run: |
-                  git config --global user.name "gh-action[BOT]"
-                  git config --global user.email "gh-action[BOT]@users.noreply.github.com"
+                  git config user.name "gh-actions[bot]"
+                  git config user.email "gh-actions[bot]@users.noreply.github.com"
 
-            - name: force push to tgt repo
-              env:
-                  TOKEN: ${{ secrets.VERYPRO_REPO_TOKEN }}
+            - name: Update submodule
+              id: update
               run: |
-                  git remote add target https://github.com/verypro-tf/Hermod.git
-                  git push target main --force
+                  git submodule update --init --remote --force worker
+                  if git diff --quiet worker; then
+                    echo "changed=false" >> $GITHUB_OUTPUT
+                    echo "No changes needed"
+                  else
+                    echo "changed=true" >> $GITHUB_OUTPUT
+                    git add worker
+                    LEFTHOOK=0 git commit --no-verify -m "chore: bumped worker submodule to ${{ github.sha }}"
+                  fi
+
+            - name: Push changes
+              if: steps.update.outputs.changed == 'true'
+              run: git push origin main
