@@ -1,0 +1,35 @@
+name: sync to org repo
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+        types:
+            - closed
+
+jobs:
+    sync:
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+        runs-on: ubuntu-slim
+
+        steps:
+            - name: checkout src repo
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.VERYPRO_REPO_TOKEN }}
+                  fetch-depth: 0
+
+            - name: Setup git identity
+              run: |
+                  git config --global user.name "gh-action[BOT]"
+                  git config --global user.email "gh-action[BOT]@users.noreply.github.com"
+
+            - name: force push to tgt repo
+              env:
+                  TOKEN: ${{ secrets.VERYPRO_REPO_TOKEN }}
+              run: |
+                  git remote add target https://github.com/verypro-tf/Hermod.git
+                  git push target main --force
