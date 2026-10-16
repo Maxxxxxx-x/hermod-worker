@@ -29,9 +29,13 @@
 
         "one-var": "off",
         "sort-keys": "off",
+        "no-ternary": "off",
         "func-style": "off",
         "no-continue": "off",
         "max-statements": "off",
+        "no-magic-numbers": "off",
+
+        "@eslint/max-depth": "off",
 
         "@logtape/no-dynamic-message": "warn",
         "@logtape/no-unrendered-properties": "warn",
@@ -51,14 +55,7 @@
         "worker": true
     },
 
-    "globals": {
-        "Bun": "readonly",
-        "caches": "readonly",
-        "fetch": "readonly",
-        "Request": "readonly",
-        "Response": "readonly",
-        "URL": "readonly"
-    },
+    "globals": {},
 
     "ignorePatterns": ["node_modules/", "dist/", ".wrangler/"]
 }
